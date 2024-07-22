@@ -1,0 +1,25 @@
+.section {
+  position: relative;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.section h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.section p {
+  font-size: 1.2em;
+}
+
+.dot {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: var(--color-highlight);
+  border-radius: 100%;
+  top: 10px;
+}

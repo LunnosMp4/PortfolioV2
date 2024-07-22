@@ -1,47 +1,45 @@
 <template>
-  <div id="app">
+  <div id="app" class="dot-pattern">
     <Background></Background>
     <Header></Header>
     <div class="page">
       <HomeScreen></HomeScreen>
+      <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script>
-import './style/fonts.css'
-
-import Background from './components/Background.vue'
-import Header from './components/Header.vue'
-
-import HomeScreen from './screens/HomeScreen.vue'
+import '@/styles/fonts.css'
+import Background from '@/components/Background.vue'
+import Header from '@/components/Header.vue'
+import HomeScreen from '@/screens/HomeScreen.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     Background,
     Header,
-    HomeScreen
+    HomeScreen,
+    Footer
   }
 }
 </script>
 
-<style>
-html, body, #app {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  color: #fff;
-  scroll-behavior: smooth;
-}
+<style scoped>
 
 .page {
   position: relative;
   top: 150px;
   max-width: 75%;
-  height: 100%;
   margin: 0 auto;
   padding: 20px;
+}
+
+.dot-pattern {
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%);
+  mask-size: cover;
 }
 
 </style>

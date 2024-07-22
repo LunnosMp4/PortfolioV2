@@ -22,17 +22,35 @@ h1, h2, h3, h4, h5, h6 {
   --color-headline: #ffffff;
   --color-paragraph: #b8c1ec;
   --color-button: #eebbc3;
+  --color-button-hover: #eebbc356;
   --color-button-text: #232946;
 
   --color-stroke: #121629;
   --color-main: #b8c1ec;
   --color-highlight: #eebbc3;
   --color-secondary: #ffffff;
-  --color-tertiary: #eebbc3;
+  --color-tertiary: #e2a2ac;
+  --color-paragraph-lighter: #c9d0f4;
 
   /* Additional colors to complement the palette */
   --color-primary-dark: #0f0e17;
   --color-primary-light: #353e6e;
   --color-accent: #ecdd55;
   --color-muted: #9295ad;
+}
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background-color: var(--color-background);
+  scroll-behavior: smooth;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, #ffffff0f 1px, transparent 1px);
+  background-size: 20px 20px; /* Adjust the size to your preference */
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
 }

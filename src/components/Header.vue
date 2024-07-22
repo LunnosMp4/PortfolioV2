@@ -1,7 +1,7 @@
 <template>
   <header class="header" ref="header">
     <div class="header-content" ref="headerContent">
-      <div class="home" ref="home">
+      <div @click="scrollToTop" :class="{ clickable: isTitleVisible }" class="home" ref="home">
         <h1 ref="headerTitle">Loïc Tisseyre</h1>
       </div>
       <nav class="nav" ref="nav">
@@ -15,14 +15,40 @@
 </template>
 
 <script>
+import emitter from '@/eventBus.js'; // Import event bus
+
 export default {
   name: 'Header',
   data() {
     return {
-      isTitleVisible: false
+      isTitleVisible: false,
     };
-  }
-}
+  },
+  mounted() {
+    emitter.on('showHeaderTitle', this.showTitle); // Listen for event
+    emitter.on('hideHeaderTitle', this.hideTitle); // Listen for event
+  },
+  beforeUnmount() {
+    emitter.off('showHeaderTitle', this.showTitle); // Unsubscribe from event
+    emitter.off('hideHeaderTitle', this.hideTitle); // Unsubscribe from event
+  },
+  methods: {
+    showTitle() {
+      this.isTitleVisible = true;
+      this.$refs.headerTitle.classList.add('visible');
+    },
+    hideTitle() {
+      this.isTitleVisible = false;
+      this.$refs.headerTitle.classList.remove('visible');
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth', // Optional: for smooth scrolling
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -31,6 +57,7 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  height: auto;
   user-select: none;
   backdrop-filter: blur(12px);
 }
@@ -48,6 +75,10 @@ export default {
 .home {
   display: flex;
   align-items: center;
+}
+
+.home.clickable {
+  cursor: pointer;
 }
 
 .home h1 {
@@ -72,7 +103,7 @@ export default {
 
 .nav a {
   position: relative;
-  color: #aaa;
+  color: var(--color-paragraph);
   text-decoration: none;
   font-size: 1.2em;
   padding: 5px 10px;
@@ -99,11 +130,6 @@ export default {
 
 .nav a:hover::before {
   transform: translateY(50%);
-}
-
-.nav a:active::before {
-  height: 30px;
-  transition: transform 0.2s, height 0.2s;
 }
 
 nav a .number {
