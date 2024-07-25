@@ -26,7 +26,7 @@ export default {
 }
 
 .skill-tag:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border: 1px solid var(--color-highlight);
   background-color: #e2a2ac17;
 }

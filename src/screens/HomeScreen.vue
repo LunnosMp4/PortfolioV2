@@ -109,10 +109,18 @@ export default {
       gsap.from(section, {
         scrollTrigger: {
           trigger: section,
-          start: "top 80%", // Adjust the start point as needed
-          end: "bottom 60%", // Adjust the end point as needed
+          start: "top 80%",
+          end: "bottom 60%",
           toggleActions: "play none none none",
           scrub: true,
+          onEnter: () => {
+            const id = section.id;
+            emitter.emit('sectionChanged', id);
+          },
+          onLeaveBack: () => {
+            const id = section.id;
+            emitter.emit('sectionChanged', id);
+          },
         },
         y: 50,
         opacity: 0,

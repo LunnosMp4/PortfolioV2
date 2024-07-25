@@ -4,6 +4,8 @@
     <div class="content-section">
       <h2 ref="title">Contact</h2>
       <p>Details about your contact information...</p>
+      <p>Details about your contact information...</p>
+      <p>Details about your contact information...</p>
     </div>
   </section>
 </template>

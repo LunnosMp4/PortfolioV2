@@ -5,10 +5,10 @@
         <h1 ref="headerTitle">Loïc Tisseyre</h1>
       </div>
       <nav class="nav" ref="nav">
-        <a href="#about"><span class="number">0. </span>About</a>
-        <a href="#skills"><span class="number">1. </span>Skills</a>
-        <a href="#projects"><span class="number">2. </span>Projects</a>
-        <a href="#contact"><span class="number">3. </span>Contact</a>
+        <a href="#about" :class="{ active: activeSection === 'about' }"><span class="number">0. </span>About</a>
+        <a href="#skills" :class="{ active: activeSection === 'skills' }"><span class="number">1. </span>Skills</a>
+        <a href="#projects" :class="{ active: activeSection === 'projects' }"><span class="number">2. </span>Projects</a>
+        <a href="#contact" :class="{ active: activeSection === 'contact' }"><span class="number">3. </span>Contact</a>
       </nav>
     </div>
   </header>
@@ -22,15 +22,18 @@ export default {
   data() {
     return {
       isTitleVisible: false,
+      activeSection: 'about' // Default active section
     };
   },
   mounted() {
     emitter.on('showHeaderTitle', this.showTitle); // Listen for event
     emitter.on('hideHeaderTitle', this.hideTitle); // Listen for event
+    emitter.on('sectionChanged', this.updateActiveSection); // Listen for section change event
   },
   beforeUnmount() {
     emitter.off('showHeaderTitle', this.showTitle); // Unsubscribe from event
     emitter.off('hideHeaderTitle', this.hideTitle); // Unsubscribe from event
+    emitter.off('sectionChanged', this.updateActiveSection); // Unsubscribe from section change event
   },
   methods: {
     showTitle() {
@@ -47,7 +50,10 @@ export default {
         behavior: 'smooth', // Optional: for smooth scrolling
       });
     },
-  },
+    updateActiveSection(section) {
+      this.activeSection = section;
+    }
+  }
 };
 </script>
 
@@ -114,6 +120,10 @@ export default {
 
 .nav a:hover {
   color: #fff;
+}
+
+.nav a.active {
+  color: var(--color-highlight);
 }
 
 .nav a::before {
