@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="footer dot-pattern">
     <div class="content">
       <p>&copy; 2024 - All rights reserved</p>
       <p>Designed and Developed by Loïc Tisseyre</p>
@@ -14,11 +14,12 @@ export default {
 </script>
 
 <style>
-footer {
-  height: 100px;
-  margin-top: 100px;
+.footer {
   width: 100%;
-  background-color: red;
+  background-color: var(--color-background);
+  color: var(--color-paragraph);
+  padding-top: 100px;
+  text-align: center;
 }
 
 </style>

@@ -214,4 +214,33 @@ export default {
     transform: translateY(0);
   }
 }
+
+@media (max-width: 1024px) {
+  .name h1 {
+    font-size: 4em;
+  }
+
+  .description {
+    max-width: 80%;
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .name h1 {
+    font-size: 3em;
+  }
+  .description {
+    max-width: 100%;
+    font-size: 1.2em;
+  }
+
+  .network {
+    flex-wrap: wrap;
+  }
+
+  .scroll {
+    opacity: 0;
+  }
+}
 </style>

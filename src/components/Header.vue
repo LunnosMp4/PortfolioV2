@@ -145,4 +145,11 @@ export default {
 nav a .number {
   color: var(--color-highlight);
 }
+
+
+@media (max-width: 1024px) {
+  .header {
+    display: none;
+  }
+}
 </style>

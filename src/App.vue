@@ -37,9 +37,16 @@ export default {
   padding: 20px;
 }
 
-.dot-pattern {
+@media screen and (max-width: 768px) {
+  .page {
+    max-width: 90%;
+  }
+  
+}
+
+/* .dot-pattern {
   mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%);
   mask-size: cover;
-}
+} */
 
 </style>

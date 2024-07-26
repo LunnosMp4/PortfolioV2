@@ -72,11 +72,6 @@ export default {
 
 <style scoped>
 
-.about-me {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 .about-me h2 {
   font-size: 2em;
   margin-bottom: 0.5em;

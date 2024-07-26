@@ -23,3 +23,25 @@
   border-radius: 100%;
   top: 10px;
 }
+
+.content-section {
+  width: 100%;
+  max-width: 800px;
+}
+
+@media (max-width: 1024px) {
+  .dot {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    max-width: 100%;
+  }
+
+  .section {
+    flex-direction: column;
+    padding: 50px 0;
+  }
+}
