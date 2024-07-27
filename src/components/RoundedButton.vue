@@ -69,4 +69,11 @@ export default {
 .rounded-button:hover {
   box-shadow: 0 0px 5px var(--color-highlight);
 }
+
+@media screen and (max-width: 768px) {
+  .rounded-button {
+    width: 100%;
+    background: linear-gradient(to right, var(--color-tertiary), var(--color-paragraph-lighter));
+  }
+}
 </style>

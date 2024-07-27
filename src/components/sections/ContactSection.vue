@@ -16,7 +16,7 @@
           <label for="message">Message</label>
           <textarea id="message" v-model="form.message" required></textarea>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Send</button>
       </form>
       <div v-if="isLoading" class="loading-message">
         <p>Sending your message...</p>
@@ -118,10 +118,10 @@ export default {
 
 .contact {
   display: flex;
-  padding: 20px;
 }
 
 .contact-form {
+  margin-top: 10px;
   padding: 20px;
   border-radius: 8px;
   width: 90%;
@@ -155,10 +155,13 @@ textarea:focus {
 
 button {
   display: inline-block;
+  margin-top: 10px;
   padding: 10px 20px;
   border: none;
+  font-size: 1.1em;
   background-color: var(--color-button);
-  color: #ffffff;
+  border-radius: 8px;
+  color: var(--color-background);
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -181,5 +184,16 @@ button:hover {
 
 .success-message {
   background-color: var(--color-success);
+}
+
+@media screen and (max-width: 768px) {
+  .contact-form {
+    padding: 0px;
+    padding-top: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
 }
 </style>

@@ -3,30 +3,52 @@
     <div class="dot" ref="dot"></div>
     <div class="content-section">
       <h2 ref="title">Projects</h2>
-      <div class="bento-grid" ref="grid">
-        <Card class="grid-item item1" :title="'Dashboard'" :description="'A personal dashboard to manage your raspberry, host cloud stockage, write note, etc...'" :openLink="'https://github.com/LunnosMp4/Dashboard'"/>
-        <Card class="grid-item item2" :title="'Cirrus'" :description="'A plane game made with Unreal Engine 5'" :imageUrl="require('@/assets/images/Cirrus.png')" :openLink="'https://github.com/LunnosMp4/Cirrus'"/>
-        <Card class="grid-item item3" :title="'Dump1090 Web Modern'" :description="'A modern web interface for dump1090'" :imageUrl="require('@/assets/images/Dump1090.png')" :openLink="'https://github.com/LunnosMp4/Dump1090-Web-Modern'"/>
-        <Card class="grid-item item4" :title="'Portfolio'" :description="'This website, made with Vue.js'" :imageUrl="require('@/assets/images/Portfolio.png')" :openLink="'https://github.com/LunnosMp4/PortfolioV2'"/>
-        <Card class="grid-item item5" :title="'Discover More'" :description="'Check out my GitHub for more projects'"/>
+      <div>
+        <Project 
+          v-for="(project, index) in projects" 
+          :key="index" 
+          class="project-list" 
+          :class="{'dimmed': hoveredIndex !== null && hoveredIndex !== index}"
+          :color="project.color" 
+          :title="project.title" 
+          :description="project.description"
+          :skills="project.skills"
+          :openLink="project.openLink" 
+          @hover="handleHover(index)" 
+          @leave="handleLeave"
+        />
       </div>
+      <RoundedButton :url="'https://github.com/LunnosMp4?tab=repositories'" class="button-view-more">
+        View More
+      </RoundedButton>
     </div>
   </section>
 </template>
 
-
-
 <script>
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Card from '@/components/Card.vue';
+import Project from '@/components/Project.vue';
+import RoundedButton from '@/components/RoundedButton.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'ProjectsSection',
   components: {
-    Card
+    Project,
+    RoundedButton
+  },
+  data() {
+    return {
+      hoveredIndex: null,
+      projects: [
+      { color: 'rgba(255, 104, 104, 0.3)', title: 'Dashboard', description: 'A personal dashboard to manage your raspberry, host cloud stockage, write note, etc...', openLink: 'https://github.com/LunnosMp4', skills: ['Vue.js', 'Node.js', 'Raspberry Pi'] },
+        { color: 'rgba(255, 217, 104, 0.3)', title: 'Cirrus', description: 'An aircraft game featuring realistic/arcade physics, providing a nuanced experience for mastering proper aircraft control.', openLink: 'https://github.com/LunnosMp4/Cirrus', skills: ['Unreal Engine 5', 'C++', '3D Modeling'] },
+        { color: 'rgba(104, 255, 169, 0.3)', title: 'Dump1090 Web Modern', description: 'A modern web interface for dump1090, used to track airplanes with an ADS-B receiver.', openLink: 'https://github.com/LunnosMp4/Dump1090-Web-Modern', skills: ['JavaScript', 'HTML', 'CSS'] },
+        { color: 'rgba(169, 104, 255, 0.3)', title: 'Portfolio', description: 'This website, made using Vue.js and some library like GSAP for all the animations.', openLink: 'https://github.com/LunnosMp4/PortfolioV2', skills: ['Vue.js', 'Node.js', 'HTML', 'CSS'] },
+      ]
+    };
   },
   mounted() {
     gsap.from(this.$refs.dot, {
@@ -53,117 +75,70 @@ export default {
         ease: "power3.out"
       }
     );
-    
-    const gridItems = this.$refs.grid.children;
 
-    gsap.from(gridItems[0], {
-      scrollTrigger: {
-        trigger: gridItems[0],
-        start: "top 90%",
-        end: "bottom 60%",
-        scrub: true,
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
+    gsap.utils.toArray('.project-list').forEach(element => {
+      gsap.fromTo(element, 
+        { backgroundSize: '0% 100%' }, 
+        { 
+          backgroundSize: '100% 100%', 
+          scrollTrigger: {
+            trigger: element,
+            start: "top 90%",
+            end: "bottom 60%",
+            scrub: 1,
+          }
+        }
+      );
     });
-
-    gsap.from(gridItems[1], {
-      scrollTrigger: {
-        trigger: gridItems[1],
-        start: "top 90%",
-        end: "bottom 60%",
-        scrub: true,
-      },
-      x: -50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    });
-
-    gsap.from(gridItems[2], {
-      scrollTrigger: {
-        trigger: gridItems[2],
-        start: "top 90%",
-        end: "bottom 60%",
-        scrub: true,
-      },
-      y: -50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    });
-
-    gsap.from(gridItems[3], {
-      scrollTrigger: {
-        trigger: gridItems[3],
-        start: "top 90%",
-        end: "bottom 60%",
-        scrub: true,
-      },
-      x: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    });
-
-    gsap.from(gridItems[4], {
-      scrollTrigger: {
-        trigger: gridItems[4],
-        start: "top 90%",
-        end: "bottom 60%",
-        scrub: true,
-      },
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    });
+  },
+  methods: {
+    handleHover(index) {
+      this.hoveredIndex = index;
+    },
+    handleLeave() {
+      this.hoveredIndex = null;
+    }
   }
 }
 </script>
 
 <style scoped>
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-auto-rows: 150px;
-  gap: 10px;
-  max-width: 800px;
+.project-list {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 20px;
+  border-radius: 16px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.project-list:first-child {
   margin-top: 20px;
 }
 
-.grid-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.dimmed * {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease;
 }
 
-.item1 {
-  grid-column: span 2;
-  grid-row: span 1;
+.button-view-more {
+  margin-top: 30px;
+  margin-left: 20px;
 }
 
-.item2 {  
-  grid-column: span 3;
-  grid-row: span 2;
+@media screen and (max-width: 768px) {
+
+  .project-list {
+    padding: 0px 0px;
+    border-radius: 0px;
+  }
+
+  .button-view-more {
+    margin-left: 0px;
+  }
 }
 
-.item3 {
-  grid-column: span 2;
-  grid-row: span 2;
-}
 
-.item4 {
-  grid-column: span 3;
-  grid-row: span 1;
-}
-
-.item5 {
-  grid-column: span 5;
-  grid-row: span 1;
-}
 </style>
