@@ -123,8 +123,7 @@ export default {
 .contact-form {
   margin-top: 10px;
   padding: 20px;
-  border-radius: 8px;
-  width: 90%;
+  width: 100%;
 }
 
 .form-group {
@@ -139,12 +138,14 @@ label {
 
 input,
 textarea {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: none;
   border-bottom: 1px solid #ffffff;
+  border-radius: 0px;
   background-color: transparent;
   color: #ffffff;
+  font-size: 0.8em;
 }
 
 input:focus,

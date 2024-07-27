@@ -3,7 +3,7 @@
     <Background></Background>
     <Header></Header>
     <div class="page">
-      <HomeScreen></HomeScreen>
+      <router-view></router-view>
       <Footer></Footer>
     </div>
   </div>
@@ -13,7 +13,6 @@
 import '@/styles/fonts.css'
 import Background from '@/components/Background.vue'
 import Header from '@/components/Header.vue'
-import HomeScreen from '@/screens/HomeScreen.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -21,7 +20,6 @@ export default {
   components: {
     Background,
     Header,
-    HomeScreen,
     Footer
   }
 }
