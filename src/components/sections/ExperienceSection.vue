@@ -57,7 +57,7 @@ export default {
           name: "Full-Stack Developer (Intership) · Elloha",
           description: "At Elloha, I developed and improved web templates, working on both the front-end and back-end using C#. My responsibilities included adding new features, fixing bugs, and ensuring seamless integration between components. I managed tasks using Jira and maintained version control with Git. Elloha's platform helps tourism and leisure businesses digitalize their operations, making it easier to manage bookings and enhance customer experiences.",
           skills: ["JavaScript", "HTML & CSS", "C#", "Git", "Jira"],
-          date: "2018 — 2024"
+          date: "Jul — Nov 2022"
         }
       ],
       academicExperiences: [
