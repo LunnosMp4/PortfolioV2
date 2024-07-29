@@ -47,10 +47,19 @@ html, body, #app {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background-color: #eebbc33f;
+  color: var(--color-secondary);
+}
+
 .dot-pattern {
   background-image: radial-gradient(circle, #ffffff0f 1px, transparent 1px);
   background-size: 20px 20px; /* Adjust the size to your preference */
   height: 100%;
   width: 100%;
   z-index: 1000;
+}
+
+button {
+  user-select: none;
 }

@@ -7,33 +7,34 @@
       <nav class="nav" ref="nav">
         <a href="#about" :class="{ active: activeSection === 'about' }"><span class="number">0. </span>About</a>
         <a href="#skills" :class="{ active: activeSection === 'skills' }"><span class="number">1. </span>Skills</a>
-        <a href="#projects" :class="{ active: activeSection === 'projects' }"><span class="number">2. </span>Projects</a>
-        <a href="#contact" :class="{ active: activeSection === 'contact' }"><span class="number">3. </span>Contact</a>
+        <a href="#experience" :class="{ active: activeSection === 'experience' }"><span class="number">2. </span>Experience</a>
+        <a href="#projects" :class="{ active: activeSection === 'projects' }"><span class="number">3. </span>Projects</a>
+        <a href="#contact" :class="{ active: activeSection === 'contact' }"><span class="number">4. </span>Contact</a>
       </nav>
     </div>
   </header>
 </template>
 
 <script>
-import emitter from '@/eventBus.js'; // Import event bus
+import emitter from '@/eventBus.js';
 
 export default {
   name: 'Header',
   data() {
     return {
       isTitleVisible: false,
-      activeSection: 'about' // Default active section
+      activeSection: 'about'
     };
   },
   mounted() {
-    emitter.on('showHeaderTitle', this.showTitle); // Listen for event
-    emitter.on('hideHeaderTitle', this.hideTitle); // Listen for event
-    emitter.on('sectionChanged', this.updateActiveSection); // Listen for section change event
+    emitter.on('showHeaderTitle', this.showTitle);
+    emitter.on('hideHeaderTitle', this.hideTitle);
+    emitter.on('sectionChanged', this.updateActiveSection);
   },
   beforeUnmount() {
-    emitter.off('showHeaderTitle', this.showTitle); // Unsubscribe from event
-    emitter.off('hideHeaderTitle', this.hideTitle); // Unsubscribe from event
-    emitter.off('sectionChanged', this.updateActiveSection); // Unsubscribe from section change event
+    emitter.off('showHeaderTitle', this.showTitle);
+    emitter.off('hideHeaderTitle', this.hideTitle);
+    emitter.off('sectionChanged', this.updateActiveSection);
   },
   methods: {
     showTitle() {
@@ -47,7 +48,7 @@ export default {
     scrollToTop() {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth', // Optional: for smooth scrolling
+        behavior: 'smooth',
       });
     },
     updateActiveSection(section) {

@@ -91,7 +91,7 @@ export default {
     async handleSubmit() {
       this.isLoading = true;
       try {
-        const response = await fetch('https://formsubmit.co/ajax/YOUR_EMAIL_HERE', {
+        const response = await fetch('https://formsubmit.co/ajax/contact@loic-tisseyre.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.form)
