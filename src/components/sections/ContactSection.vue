@@ -79,6 +79,7 @@ export default {
         start: "top 90%",
         end: "bottom 60%",
         scrub: true,
+        snap: 0.2
       },
       y: 50,
       opacity: 0,

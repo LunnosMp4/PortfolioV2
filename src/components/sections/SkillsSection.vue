@@ -89,6 +89,7 @@ export default {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
+          snap: 0.2
         },
         ease: "power3.out",
         stagger: 0.2 // Adjust the stagger delay to your preference

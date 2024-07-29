@@ -86,6 +86,7 @@ export default {
             start: "top 90%",
             end: "bottom 60%",
             scrub: 1,
+            snap: 0.2
           }
         }
       );

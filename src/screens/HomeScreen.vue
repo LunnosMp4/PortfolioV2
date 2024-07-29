@@ -35,7 +35,7 @@
       </svg>
     </div>
 
-    <div class="sections">
+    <div class="sections" id="test">
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
