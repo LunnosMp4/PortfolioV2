@@ -32,5 +32,7 @@ Welcome to my portfolio! This project showcases my work and skills using modern 
 ## 🔄 Continuous Deployment
 This project uses GitHub Actions for continuous deployment. Every time a push is made into the master branch, the project is automatically built and the dist folder is uploaded to the web hosting service.
 
+[![Build and Deploy](https://github.com/LunnosMp4/PortfolioV2/actions/workflows/main.yml/badge.svg)](https://github.com/LunnosMp4/PortfolioV2/actions/workflows/main.yml)
+
 ## 🌐 Website
 The website is hosted on https://loic-tisseyre.com.
