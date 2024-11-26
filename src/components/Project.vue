@@ -83,6 +83,7 @@ export default {
 
 .card-content p {
   font-size: 1.1em;
+  margin-top: auto;
 }
 
 .title {
