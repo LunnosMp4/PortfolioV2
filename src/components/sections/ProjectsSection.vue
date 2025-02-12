@@ -48,6 +48,7 @@ export default {
         { color: 'rgba(255, 217, 104, 0.3)', title: 'Cirrus', description: 'An aircraft game featuring realistic/arcade physics, providing a nuanced experience for mastering proper aircraft control.', openLink: 'https://lunnos.itch.io/cirrus', skills: ['Unreal Engine 5', 'C++', '3D Modeling'] },
         { color: 'rgba(104, 255, 169, 0.3)', title: 'Dump1090 Web Modern', description: 'A modern web interface for dump1090, used to track airplanes with an ADS-B receiver.', openLink: 'https://github.com/LunnosMp4/Dump1090-Web-Modern', skills: ['JavaScript', 'HTML', 'CSS'] },
         { color: 'rgba(169, 104, 255, 0.3)', title: 'Portfolio', description: 'This website, made using Vue.js and some library like GSAP for all the animations.', openLink: 'https://github.com/LunnosMp4/PortfolioV2', skills: ['Vue.js', 'Node.js', 'HTML', 'CSS'] },
+        { color: 'rgba(104, 255, 255, 0.3)', title: 'Perceptia', description: 'Capture screen regions for AI-powered responses.', openLink: 'https://github.com/LunnosMp4/Perceptia', skills: ['Node.js'] },
       ]
     };
   },
