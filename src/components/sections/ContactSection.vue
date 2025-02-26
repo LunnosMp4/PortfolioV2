@@ -16,7 +16,10 @@
           <label for="message">Message</label>
           <textarea id="message" v-model="form.message" required></textarea>
         </div>
-        <button type="submit">Send</button>
+        <button type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="send-alt" class="icon glyph"><path fill="var(--color-button-text)" d="M21.88,4.73,16.2,20.65A2,2,0,0,1,14.3,22h0a2,2,0,0,1-1.9-1.31l-2.12-5.52,1.54-1.54,2.49-2.49a1,1,0,1,0-1.42-1.42l-2.49,2.49L8.82,13.76,3.31,11.63a2,2,0,0,1,0-3.83L19.27,2.12a2,2,0,0,1,2.61,2.61Z"></path></svg>
+          Send
+        </button>
       </form>
       <div v-if="isLoading" class="loading-message">
         <p>Sending your message...</p>
@@ -78,8 +81,7 @@ export default {
         trigger: this.$refs.form,
         start: "top 90%",
         end: "bottom 60%",
-        scrub: true,
-        snap: 0.2
+        scrub: true
       },
       y: 50,
       opacity: 0,
@@ -159,6 +161,8 @@ button {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 20px;
+  align-items: center;
+  justify-content: center;
   border: none;
   font-size: 1.1em;
   background-color: var(--color-button);
@@ -170,6 +174,11 @@ button {
 
 button:hover {
   background-color: var(--color-button-hover);
+}
+
+button svg {
+  margin-right: 5px;
+  vertical-align: top;
 }
 
 .loading-message, .success-message {

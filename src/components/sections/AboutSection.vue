@@ -61,8 +61,7 @@ export default {
             trigger: element,
             start: "top 90%",
             end: "bottom 60%",
-            scrub: 1,
-            snap: 0.2
+            scrub: 1
           }
         }
       );

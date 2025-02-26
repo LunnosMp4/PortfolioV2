@@ -32,11 +32,11 @@ h1, h2, h3, h4, h5, h6 {
   --color-tertiary: #e2a2ac;
   --color-paragraph-lighter: #c9d0f4;
 
-  /* Additional colors to complement the palette */
   --color-primary-dark: #0f0e17;
   --color-primary-light: #353e6e;
   --color-accent: #ecdd55;
   --color-muted: #9295ad;
+  --color-glass: #c9d0f4;
 }
 
 html, body, #app {

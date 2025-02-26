@@ -29,9 +29,9 @@
 
     <div class="scroll" ref="scroll">
       <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 15C5 16.8565 5.73754 18.6371 7.05029 19.9498C8.36305 21.2626 10.1435 21.9999 12 21.9999C13.8565 21.9999 15.637 21.2626 16.9498 19.9498C18.2625 18.6371 19 16.8565 19 15V9C19 7.14348 18.2625 5.36305 16.9498 4.05029C15.637 2.73754 13.8565 2 12 2C10.1435 2 8.36305 2.73754 7.05029 4.05029C5.73754 5.36305 5 7.14348 5 9V15Z" stroke="var(--color-paragraph)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M12 6V14" stroke="var(--color-paragraph)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M15 11L12 14L9 11" stroke="var(--color-paragraph)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 15C5 16.8565 5.73754 18.6371 7.05029 19.9498C8.36305 21.2626 10.1435 21.9999 12 21.9999C13.8565 21.9999 15.637 21.2626 16.9498 19.9498C18.2625 18.6371 19 16.8565 19 15V9C19 7.14348 18.2625 5.36305 16.9498 4.05029C15.637 2.73754 13.8565 2 12 2C10.1435 2 8.36305 2.73754 7.05029 4.05029C5.73754 5.36305 5 7.14348 5 9V15Z" stroke="var(--color-glass)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 6V14" stroke="var(--color-glass)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 11L12 14L9 11" stroke="var(--color-glass)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
 
@@ -75,6 +75,8 @@ export default {
     ContactSection
   },
   mounted() {
+    window.scrollTo(0, 0);
+
     const tl = gsap.timeline();
 
     tl.from(this.$refs.greeting, {
@@ -106,6 +108,11 @@ export default {
       opacity: 0,
       ease: "power3.out",
       stagger: 0.2
+    }, "-=0.5")
+    .from(this.$refs.scroll, {
+      duration: 0.8,
+      opacity: 0,
+      ease: "power3.out"
     }, "-=0.5");
 
     ScrollTrigger.create({
@@ -144,18 +151,48 @@ export default {
     });
 
     let scrollDivHidden = false;
-    const hideScrollDiv = () => {
-      if (!scrollDivHidden) {
+  
+    const handleScroll = () => {
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollTop > 100 && !scrollDivHidden) {
         gsap.to(this.$refs.scroll, {
           duration: 0.5,
           opacity: 0,
           ease: "power3.out",
         });
         scrollDivHidden = true;
+      } else if (scrollTop <= 100 && scrollDivHidden) {
+        gsap.to(this.$refs.scroll, {
+          duration: 0.5,
+          opacity: 0.3,
+          ease: "power3.out",
+        });
+        scrollDivHidden = false;
       }
     };
 
-    window.addEventListener('scroll', hideScrollDiv);
+    const sections = gsap.utils.toArray(".section");
+
+    ScrollTrigger.create({
+      trigger: ".sections",
+      start: "top top",
+      end: "bottom bottom",
+      snap: {
+        snapTo: (progress) => {
+          let sectionOffsets = sections.map(section => section.offsetTop);
+          let closest = sectionOffsets.reduce((prev, curr) => 
+            Math.abs(curr - progress * document.body.scrollHeight) < Math.abs(prev - progress * document.body.scrollHeight) ? curr : prev
+          );
+          return closest / document.body.scrollHeight;
+        },
+        duration: { min: 0.2, max: 0.7 },
+        delay: 0.1,
+        ease: "power1.inOut"
+      }
+    });
+
+    window.addEventListener('scroll', handleScroll);
   }
 }
 </script>
@@ -214,6 +251,7 @@ export default {
   margin-top: 8%;
   margin-bottom: 20px;
   animation: scroll 2s infinite;
+  opacity: 0.3;
 }
 
 @keyframes scroll {

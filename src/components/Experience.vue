@@ -36,10 +36,14 @@ export default {
   color: var(--color-paragraph);
   margin-right: 20px;
   margin-top: 21px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--color-highlight);
 }
 
 .date.mobile {
   display: none;
+  text-decoration: none;
 }
 
 .details {

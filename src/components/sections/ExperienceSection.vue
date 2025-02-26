@@ -97,7 +97,7 @@ export default {
             start: "top 80%",
             end: "top 50%",
             scrub: true,
-            snap: 0.2
+            
           },
           x: -50,
           opacity: 0,
@@ -128,7 +128,7 @@ export default {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
-          snap: 0.2 
+           
         },
         ease: "power3.out"
       }
@@ -154,7 +154,7 @@ export default {
           start: "top 80%",
           end: "top 50%",
           scrub: true,
-          snap: 0.2
+          
         },
         x: -50,
         opacity: 0,
@@ -185,10 +185,11 @@ export default {
   font-size: 16px;
   margin: 0 10px;
   padding: 10px 20px;
-  border-radius: 50px;
+  border-radius: 10px;
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.3s;
+  border: 1px solid var(--color-highlight);
 }
 
 .toggle-buttons button.active {
@@ -197,7 +198,8 @@ export default {
 }
 
 .toggle-buttons button:hover {
-  border: 2px solid var(--color-highlight);
+  border: 1px solid var(--color-highlight);
+  transform: scale(1.05);
 }
 
 </style>
