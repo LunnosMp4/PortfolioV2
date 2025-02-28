@@ -5,11 +5,11 @@
         <h1 ref="headerTitle">Loïc Tisseyre</h1>
       </div>
       <nav class="nav" ref="nav">
-        <a href="#about" :class="{ active: activeSection === 'about' }"><span class="number">0. </span>About</a>
-        <a href="#skills" :class="{ active: activeSection === 'skills' }"><span class="number">1. </span>Skills</a>
-        <a href="#experience" :class="{ active: activeSection === 'experience' }"><span class="number">2. </span>Experience</a>
-        <a href="#projects" :class="{ active: activeSection === 'projects' }"><span class="number">3. </span>Projects</a>
-        <a href="#contact" :class="{ active: activeSection === 'contact' }"><span class="number">4. </span>Contact</a>
+        <a :class="{ active: activeSection === 'about' }"><span class="number">0. </span>About</a>
+        <a :class="{ active: activeSection === 'skills' }"><span class="number">1. </span>Skills</a>
+        <a :class="{ active: activeSection === 'experience' }"><span class="number">2. </span>Experience</a>
+        <a :class="{ active: activeSection === 'projects' }"><span class="number">3. </span>Projects</a>
+        <a :class="{ active: activeSection === 'contact' }"><span class="number">4. </span>Contact</a>
       </nav>
     </div>
   </header>
@@ -119,15 +119,15 @@ export default {
   transition: color 0.2s;
 }
 
-.nav a:hover {
+/* .nav a:hover {
   color: #fff;
-}
+} */
 
 .nav a.active {
   color: var(--color-highlight);
 }
 
-.nav a::before {
+/* .nav a::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -141,7 +141,7 @@ export default {
 
 .nav a:hover::before {
   transform: translateY(50%);
-}
+} */
 
 nav a .number {
   color: var(--color-highlight);
