@@ -9,7 +9,7 @@ export default {
   name: 'WorkStatus',
   data() {
     return {
-      isOpenToWork: true, // Change this value to toggle the work status
+      isOpenToWork: false,
     };
   },
   computed: {
@@ -58,6 +58,7 @@ export default {
   background-color: rgba(255, 107, 104, 0.7);
   border-radius: 50%;
   margin-right: 15px;
+  animation: active 2s infinite;
 }
 
 @keyframes active {

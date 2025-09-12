@@ -47,13 +47,20 @@ export default {
       professionalExperiences: [
         {
           id: 1,
+          name: "Freelance Software Developer",
+          description: "Developed a C# application as an extension for Tekla Structures to handle bending profiles. The tool automated workflows related to profile bending, improving accuracy and reducing manual work. I designed and implemented the application from scratch, ensuring smooth integration with Tekla and delivering a reliable solution tailored to structural engineering needs.",
+          skills: ["C#", "Tekla Structures API", "Software Development"],
+          date: "Jul — Sep 2025"
+        },
+        {
+          id: 2,
           name: "Software Engineer (Intership) · Eliis",
           description: "At Eliis, I worked on the development of PaleoScan™, a seismic interpretation software. My role involved programming in C++ and Qt to add features, improve functionality, and fix bugs. I managed tasks with Jira, used Git for version control, and participated in continuous integration with Jenkins. I followed agile methodologies to ensure efficient project delivery. Eliis specializes in advanced geoscience solutions that enhance the speed and accuracy of subsurface analysis.",
           skills: ["C++", "QT", "Git", "Jenkins", "Jira"],
           date: "Feb — May 2024"
         },
         {
-          id: 2,
+          id: 3,
           name: "Full-Stack Developer (Intership) · Elloha",
           description: "At Elloha, I developed and improved web templates, working on both the front-end and back-end using C#. My responsibilities included adding new features, fixing bugs, and ensuring seamless integration between components. I managed tasks using Jira and maintained version control with Git. Elloha's platform helps tourism and leisure businesses digitalize their operations, making it easier to manage bookings and enhance customer experiences.",
           skills: ["JavaScript", "HTML & CSS", "C#", "Git", "Jira"],
