@@ -5,13 +5,13 @@
       <h2 ref="title">About</h2>
       <div class="about-me">
         <p>
-          Hi there! I'm a passionate <span class="highlight">Full Stack Developer</span> and <span class="highlight">Software Developer</span> with a knack for creating stunning, user-friendly websites and applications.
+          Hi there! I'm a <span class="highlight">Software Engineer</span> and <span class="highlight">Full Stack Developer</span> with solid experience building and maintaining modern web applications.
         </p>
         <p>
-          I love tackling complex problems and turning them into simple, beautiful, and intuitive designs. My work is driven by a deep understanding of <span class="highlight">user experience</span> and a commitment to <span class="highlight">code quality</span> and <span class="highlight">performance</span>.
+          I enjoy working across the stack, from crafting clean and intuitive user interfaces to designing robust backend systems. My approach is strongly driven by <span class="highlight">code quality</span>, <span class="highlight">performance</span>, and a deep understanding of how applications behave in real-world production environments.
         </p>
         <p>
-          When I'm not coding, you can find me playing video games, riding my motorcycle, or practicing Parkour, a sport I truly enjoy.
+          Alongside my development work, I’m progressively expanding my skills toward <span class="highlight">cloud technologies</span> and <span class="highlight">modern infrastructure practices</span>, with the goal of designing applications that are not only well-built, but also scalable, reliable, and easier to operate.
         </p>
       </div>
     </div>
