@@ -6,7 +6,7 @@
     </div>
     <div class="description" ref="description">
       <p>
-        I'm a Full-stack developer passionate about intuitive, high-performance applications.
+        I’m a full-stack developer passionate about intuitive, high-performance applications and continuously expanding my skills toward cloud and infrastructure.
       </p>
     </div>
     <div ref="workStatus">
