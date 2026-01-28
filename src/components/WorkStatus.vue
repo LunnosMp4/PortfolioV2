@@ -9,7 +9,7 @@ export default {
   name: 'WorkStatus',
   data() {
     return {
-      isOpenToWork: false,
+      isOpenToWork: true,
     };
   },
   computed: {
