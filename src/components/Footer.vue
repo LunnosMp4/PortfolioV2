@@ -1,7 +1,7 @@
 <template>
   <footer class="footer dot-pattern">
     <div class="content">
-      <p>&copy; 2024 - All rights reserved</p>
+      <p>&copy; 2026 - All rights reserved</p>
       <p>Designed and Developed by Loïc Tisseyre</p>
     </div>
   </footer>
