@@ -16,6 +16,7 @@
           :description="exp.description"
           :skills="exp.skills"
           :date="exp.date"
+          :location="exp.location"
         />
         </div>
         <div class="experience-list" v-if="currentSection === 'academic'">
@@ -47,24 +48,42 @@ export default {
       professionalExperiences: [
         {
           id: 1,
+          name: "GCP Cloud Engineer (Internship) · Thales",
+          description: "Contributed to the deployment and automation of secure, sovereign cloud infrastructure within Thales' Automation Platforms & Cloud (APC) team. Designed, implemented, and brought GCP and S3NS landing zones into production for enterprise clients. Automated deployments with Terraform and Google Cloud Foundation Fabric (FAST), and helped migrate infrastructure management to Terragrunt to support a DRY, consistent multi-client architecture.",
+          skills: ["GCP", "S3NS", "Terraform", "Terragrunt", "Google Cloud Foundation Fabric (FAST)", "Infrastructure as Code"],
+          date: "Apr — Oct 2026",
+          location: "Lyon, France"
+        },
+        {
+          id: 2,
+          name: "Software Engineer Intern · Eliis",
+          description: "Joined Eliis' M&S team to help prepare the PaleoScan™ seismic interpretation software for release. Worked on critical fixes and priority features, resolving urgent issues with the team and coordinating with Product to analyze, prioritize, and validate fixes. Contributed C++/Qt changes, created and reviewed merge requests, managed tickets in Jira, and used Git in an Agile development and CI/CD workflow.",
+          skills: ["C++", "Qt", "Jira", "Git", "CI/CD", "Agile", "Code Review"],
+          date: "Sep 2025 — Feb 2026",
+          location: "Clapiers, France"
+        },
+        {
+          id: 3,
           name: "Freelance Software Developer",
           description: "Developed a C# application as an extension for Tekla Structures to handle bending profiles. The tool automated workflows related to profile bending, improving accuracy and reducing manual work. I designed and implemented the application from scratch, ensuring smooth integration with Tekla and delivering a reliable solution tailored to structural engineering needs.",
           skills: ["C#", "Tekla Structures API", "Software Development"],
           date: "Jul — Sep 2025"
         },
         {
-          id: 2,
-          name: "Software Engineer (Intership) · Eliis",
+          id: 4,
+          name: "Software Engineer Intern · Eliis",
           description: "At Eliis, I worked on the development of PaleoScan™, a seismic interpretation software. My role involved programming in C++ and Qt to add features, improve functionality, and fix bugs. I managed tasks with Jira, used Git for version control, and participated in continuous integration with Jenkins. I followed agile methodologies to ensure efficient project delivery. Eliis specializes in advanced geoscience solutions that enhance the speed and accuracy of subsurface analysis.",
           skills: ["C++", "QT", "Git", "Jenkins", "Jira"],
-          date: "Feb — May 2024"
+          date: "Feb — May 2024",
+          location: "Clapiers, France"
         },
         {
-          id: 3,
-          name: "Full-Stack Developer (Intership) · Elloha",
+          id: 5,
+          name: "Full-Stack Developer Intern · Elloha",
           description: "At Elloha, I developed and improved web templates, working on both the front-end and back-end using C#. My responsibilities included adding new features, fixing bugs, and ensuring seamless integration between components. I managed tasks using Jira and maintained version control with Git. Elloha's platform helps tourism and leisure businesses digitalize their operations, making it easier to manage bookings and enhance customer experiences.",
           skills: ["JavaScript", "HTML & CSS", "C#", "Git", "Jira"],
-          date: "Jul — Nov 2022"
+          date: "Jul — Nov 2022",
+          location: "Perpignan, France"
         }
       ],
       academicExperiences: [

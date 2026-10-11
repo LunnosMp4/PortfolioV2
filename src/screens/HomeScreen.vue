@@ -6,7 +6,7 @@
     </div>
     <div class="description" ref="description">
       <p>
-        I’m a full-stack developer passionate about intuitive, high-performance applications and continuously expanding my skills toward cloud and infrastructure.
+        I’m a Cloud Engineer focused on cloud platforms, with hands-on experience deploying and automating GCP and S3NS infrastructure using Terraform. I also continue to take on freelance software-development projects.
       </p>
     </div>
     <div ref="workStatus">

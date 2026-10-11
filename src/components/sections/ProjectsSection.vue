@@ -47,11 +47,10 @@ export default {
     return {
       hoveredIndex: null,
       projects: [
-        { color: 'rgba(255, 180, 85, 0.4)', title: 'GateKeeper', description: 'A high-performance Rust-based API Gateway with authentication, rate limiting, caching, and analytics for managing and securing backend microservices.', openLink: 'https://github.com/LunnosMp4/GateKeeper', skills: ['Rust', 'Vue.js', 'Docker', 'PostgreSQL', 'Redis'] },
-        { color: 'rgba(255, 217, 104, 0.3)', title: 'Cirrus', description: 'An aircraft game featuring realistic/arcade physics, providing a nuanced experience for mastering proper aircraft control.', openLink: 'https://lunnos.itch.io/cirrus', skills: ['Unreal Engine 5', 'C++', '3D Modeling'] },
-        { color: 'rgba(104, 255, 169, 0.3)', title: 'Dump1090 Web Modern', description: 'A modern web interface for dump1090, used to track airplanes with an ADS-B receiver.', openLink: 'https://github.com/LunnosMp4/Dump1090-Web-Modern', skills: ['JavaScript', 'HTML', 'CSS'] },
-        { color: 'rgba(169, 104, 255, 0.3)', title: 'Portfolio', description: 'This website, made using Vue.js and some library like GSAP for all the animations.', openLink: 'https://github.com/LunnosMp4/PortfolioV2', skills: ['Vue.js', 'Node.js', 'HTML', 'CSS'] },
-        { color: 'rgba(104, 255, 255, 0.3)', title: 'Perceptia', description: 'Capture screen regions for AI-powered responses.', openLink: 'https://github.com/LunnosMp4/Perceptia', skills: ['Node.js'] },
+        { color: 'rgba(255, 180, 85, 0.4)', title: 'HYT', description: 'A command-line tool for Hytale plugin development that automates project setup, Gradle builds, and development workflows, with optional file watching and integrated server management.', openLink: 'https://github.com/LunnosMp4/hyt', skills: ['TypeScript', 'Node.js', 'Java', 'Gradle'] },
+        { color: 'rgba(255, 217, 104, 0.3)', title: 'Covenant', description: 'A keyboard-first desktop command bar for Windows and macOS, bringing AI chat, a terminal, a coding agent, workflows, tasks, app launching, and clipboard search into one floating window.', openLink: 'https://github.com/LunnosMp4/Covenant', skills: ['Electron', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
+        { color: 'rgba(104, 255, 169, 0.3)', title: 'Dump1090 Web Modern', description: 'A modern web interface for dump1090 that tracks aircraft from ADS-B receivers, with an optional Node.js backend for data backups and reports.', openLink: 'https://github.com/LunnosMp4/Dump1090-Web-Modern', skills: ['JavaScript', 'HTML', 'CSS', 'Node.js'] },
+        { color: 'rgba(104, 255, 255, 0.3)', title: 'Portfolio', description: 'This website, made using Vue.js and some library like GSAP for all the animations.', openLink: 'https://github.com/LunnosMp4/PortfolioV2', skills: ['Vue.js', 'Node.js', 'HTML', 'CSS'] },
       ]
     };
   },
