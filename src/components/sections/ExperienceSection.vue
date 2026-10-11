@@ -48,7 +48,7 @@ export default {
       professionalExperiences: [
         {
           id: 1,
-          name: "GCP Cloud Engineer (Internship) · Thales",
+          name: "GCP Cloud Engineer Intern · Thales",
           description: "Contributed to the deployment and automation of secure, sovereign cloud infrastructure within Thales' Automation Platforms & Cloud (APC) team. Designed, implemented, and brought GCP and S3NS landing zones into production for enterprise clients. Automated deployments with Terraform and Google Cloud Foundation Fabric (FAST), and helped migrate infrastructure management to Terragrunt to support a DRY, consistent multi-client architecture.",
           skills: ["GCP", "S3NS", "Terraform", "Terragrunt", "Google Cloud Foundation Fabric (FAST)", "Infrastructure as Code"],
           date: "Apr — Oct 2026",
@@ -116,20 +116,13 @@ export default {
       this.currentSection = section;
     },
     applyAnimations() {
-      gsap.utils.toArray(this.$refs.exp.children).forEach((child) => {
-        gsap.from(child, {
-          scrollTrigger: {
-            trigger: child,
-            start: "top 80%",
-            end: "top 50%",
-            scrub: true,
-            
-          },
-          x: -50,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out"
-        });
+      gsap.from(this.$refs.exp.children, {
+        x: -40,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.out",
+        stagger: 0.08,
+        clearProps: "transform"
       });
     }
   },
@@ -149,44 +142,39 @@ export default {
       { rotationX: 90, transformOrigin: "top center" },
       {
         rotationX: 0,
+        duration: 0.8,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: this.$refs.title,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: true,
-           
-        },
-        ease: "power3.out"
+          start: "top 88%",
+          once: true,
+        }
       }
     );
 
     gsap.from(this.$refs.buttons, {
+      duration: 0.7,
+      ease: "power3.out",
+      y: 40,
+      opacity: 0,
       scrollTrigger: {
         trigger: this.$refs.buttons,
-        start: "top 80%",
-        end: "top 50%",
-        scrub: true,
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
+        start: "top 90%",
+        once: true,
+      }
     });
 
-    gsap.utils.toArray(this.$refs.exp.children).forEach((child) => {
-      gsap.from(child, {
-        scrollTrigger: {
-          trigger: child,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: true,
-          
-        },
-        x: -50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
+    gsap.from(this.$refs.exp.children, {
+      x: -40,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power3.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: this.$refs.exp,
+        start: "top 85%",
+        once: true,
+      }
     });
   },
 

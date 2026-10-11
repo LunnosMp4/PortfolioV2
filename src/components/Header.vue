@@ -5,11 +5,11 @@
         <h1 ref="headerTitle">Loïc Tisseyre</h1>
       </div>
       <nav class="nav" ref="nav">
-        <a :class="{ active: activeSection === 'about' }"><span class="number">0. </span>About</a>
-        <a :class="{ active: activeSection === 'skills' }"><span class="number">1. </span>Skills</a>
-        <a :class="{ active: activeSection === 'experience' }"><span class="number">2. </span>Experience</a>
-        <a :class="{ active: activeSection === 'projects' }"><span class="number">3. </span>Projects</a>
-        <a :class="{ active: activeSection === 'contact' }"><span class="number">4. </span>Contact</a>
+        <a href="#about" @click.prevent="goTo('about')" :class="{ active: activeSection === 'about' }"><span class="number">0. </span>About</a>
+        <a href="#skills" @click.prevent="goTo('skills')" :class="{ active: activeSection === 'skills' }"><span class="number">1. </span>Skills</a>
+        <a href="#experience" @click.prevent="goTo('experience')" :class="{ active: activeSection === 'experience' }"><span class="number">2. </span>Experience</a>
+        <a href="#projects" @click.prevent="goTo('projects')" :class="{ active: activeSection === 'projects' }"><span class="number">3. </span>Projects</a>
+        <a href="#contact" @click.prevent="goTo('contact')" :class="{ active: activeSection === 'contact' }"><span class="number">4. </span>Contact</a>
       </nav>
     </div>
   </header>
@@ -17,6 +17,7 @@
 
 <script>
 import emitter from '@/eventBus.js';
+import { scrollTo } from '@/plugins/smoothScroll';
 
 export default {
   name: 'Header',
@@ -46,10 +47,11 @@ export default {
       this.$refs.headerTitle.classList.remove('visible');
     },
     scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+      scrollTo(0, { duration: 1.4 });
+    },
+    goTo(id) {
+      const el = document.getElementById(id);
+      if (el) scrollTo(el, { duration: 1.2 });
     },
     updateActiveSection(section) {
       this.activeSection = section;
@@ -119,29 +121,32 @@ export default {
   transition: color 0.2s;
 }
 
-/* .nav a:hover {
-  color: #fff;
-} */
+.nav a:hover {
+  color: var(--color-secondary);
+}
 
 .nav a.active {
   color: var(--color-highlight);
 }
 
-/* .nav a::before {
+.nav a::after {
   content: '';
   position: absolute;
+  left: 10px;
+  right: 10px;
   bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--color-highlight);
-  transform: translateY(100%);
-  transition: transform 0.2s;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-tertiary), var(--color-paragraph-lighter));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav a:hover::before {
-  transform: translateY(50%);
-} */
+.nav a:hover::after,
+.nav a.active::after {
+  transform: scaleX(1);
+}
 
 nav a .number {
   color: var(--color-highlight);

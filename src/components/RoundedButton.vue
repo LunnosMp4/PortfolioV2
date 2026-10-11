@@ -1,12 +1,10 @@
 <template>
-  <button class="rounded-button" @click="openUrl" ref="button">
+  <button class="rounded-button" ref="button" @click="openUrl">
     <slot></slot>
   </button>
 </template>
 
 <script>
-import emitter from '@/eventBus'; // Import the event bus
-
 export default {
   name: 'RoundedButton',
   props: {
@@ -16,32 +14,29 @@ export default {
     }
   },
   mounted() {
+    this.$refs.button.addEventListener('mousemove', this.handleMouseMove);
+    this.$refs.button.addEventListener('mouseleave', this.handleMouseLeave);
+  },
+  beforeUnmount() {
     const button = this.$refs.button;
-
-    const handleMouseMove = (e) => {
+    if (!button) return;
+    button.removeEventListener('mousemove', this.handleMouseMove);
+    button.removeEventListener('mouseleave', this.handleMouseLeave);
+  },
+  methods: {
+    handleMouseMove(e) {
+      const button = this.$refs.button;
       const pos = button.getBoundingClientRect();
       const mx = e.clientX - pos.left - pos.width / 2;
       const my = e.clientY - pos.top - pos.height / 2;
 
-      button.style.transform = `translate(${mx * 0.15}px, ${my * 0.3}px) rotate3d(${mx * -0.1}, ${my * -0.3}, 0, 12deg)`;
-    };
-
-    const handleMouseLeave = () => {
-      button.style.transform = 'translate3d(0px, 0px, 0px) rotate3d(0, 0, 0, 0deg)';
-    };
-
-    button.addEventListener('mousemove', handleMouseMove);
-    button.addEventListener('mouseleave', handleMouseLeave);
-
-    emitter.on('destroyEventListeners', () => {
-      button.removeEventListener('mousemove', handleMouseMove);
-      button.removeEventListener('mouseleave', handleMouseLeave);
-    });
-  },
-  beforeUnmount() {
-    emitter.emit('destroyEventListeners');
-  },
-  methods: {
+      // Full 2D magnetic pull toward the cursor (plus a subtle 3D lean).
+      button.style.transform =
+        `translate(${mx * 0.2}px, ${my * 0.2}px) rotate3d(${mx * -0.08}, ${my * -0.08}, 0, 9deg)`;
+    },
+    handleMouseLeave() {
+      this.$refs.button.style.transform = 'translate3d(0px, 0px, 0px) rotate3d(0, 0, 0, 0deg)';
+    },
     openUrl() {
       window.open(this.url, '_blank');
     }
@@ -54,7 +49,7 @@ export default {
   user-select: none;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the content inside the button */
+  justify-content: center;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
@@ -62,12 +57,13 @@ export default {
   color: var(--color-button-text);
   font-size: 1.2em;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, rotate 0.1s;
   position: relative;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+  will-change: transform;
 }
 
 .rounded-button:hover {
-  box-shadow: 0 0px 5px var(--color-highlight);
+  box-shadow: 0 8px 22px var(--glow-highlight);
 }
 
 @media screen and (max-width: 768px) {

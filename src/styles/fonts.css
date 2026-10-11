@@ -37,6 +37,15 @@ h1, h2, h3, h4, h5, h6 {
   --color-accent: #ecdd55;
   --color-muted: #9295ad;
   --color-glass: #c9d0f4;
+
+  --color-loading: #2b3357;
+  --color-success: rgba(107, 255, 104, 0.12);
+  --color-success-text: #9dff9a;
+  --color-danger: rgba(255, 107, 104, 0.12);
+  --color-danger-text: #ff9d9b;
+
+  --glow-highlight: rgba(238, 187, 195, 0.35);
+  --glow-soft: rgba(184, 193, 236, 0.18);
 }
 
 html, body, #app {
@@ -44,7 +53,7 @@ html, body, #app {
   padding: 0;
   color: #fff;
   background-color: var(--color-background);
-  scroll-behavior: smooth;
+  /* Smooth scrolling is handled by Lenis (see plugins/smoothScroll.js) */
 }
 
 ::selection {

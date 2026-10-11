@@ -42,13 +42,13 @@ export default {
       { rotationX: 90, transformOrigin: "top center" }, 
       { 
         rotationX: 0,
+        duration: 0.8,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: this.$refs.title,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: true,
-        },
-        ease: "power3.out"
+          start: "top 88%",
+          once: true,
+        }
       }
     );
 
@@ -56,12 +56,13 @@ export default {
       gsap.fromTo(element, 
         { backgroundSize: '0% 100%' }, 
         { 
-          backgroundSize: '100% 100%', 
+          backgroundSize: '100% 100%',
+          duration: 0.7,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 90%",
-            end: "bottom 60%",
-            scrub: 1
+            start: "top 92%",
+            once: true
           }
         }
       );

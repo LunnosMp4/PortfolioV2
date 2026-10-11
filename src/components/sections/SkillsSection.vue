@@ -93,13 +93,13 @@ export default {
       { rotationX: 90, transformOrigin: "top center" }, 
       { 
         rotationX: 0,
+        duration: 0.8,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: this.$refs.title,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: true,
-        },
-        ease: "power3.out"
+          start: "top 88%",
+          once: true,
+        }
       }
     );
 
@@ -108,14 +108,14 @@ export default {
       { 
         y: 0, 
         opacity: 1, 
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.06,
         scrollTrigger: {
           trigger: this.$refs.skillTags,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: true,
-        },
-        ease: "power3.out",
-        stagger: 0.2 // Adjust the stagger delay to your preference
+          start: "top 88%",
+          once: true,
+        }
       }
     );
   }

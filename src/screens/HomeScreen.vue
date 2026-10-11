@@ -1,8 +1,9 @@
 <template>
   <section class="home-screen">
+    <div class="hero" ref="hero">
     <div class="name">
       <p ref="greeting" >Hello there! I'm</p>
-      <h1 ref="name">Loïc Tisseyre</h1>
+      <h1 ref="name" aria-label="Loïc Tisseyre"><span class="name-text">Loïc Tisseyre</span></h1>
     </div>
     <div class="description" ref="description">
       <p>
@@ -25,6 +26,7 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m13.73635 5.85251 4.00467-4.11665 2.3248 2.3808-4.20064 4.00466h5.9085v3.30473h-5.9365l4.22865 4.10766-2.3248 2.3338L12.0005 12.099l-5.74052 5.76852-2.3248-2.3248 4.22864-4.10766h-5.9375V8.12132h5.9085L3.93417 4.11666l2.3248-2.3808 4.00468 4.11665V0h3.4727zm-3.4727 10.30614h3.4727V24h-3.4727z" fill="var(--color-button-text)"/></svg>
         Linktree
       </RoundedButton>
+    </div>
     </div>
 
     <div class="scroll" ref="scroll">
@@ -60,6 +62,7 @@ import ContactSection from '@/components/sections/ContactSection.vue';
 import ExperienceSection from '@/components/sections/ExperienceSection.vue';
 
 import emitter from '@/eventBus.js';
+import { scrollTo } from '@/plugins/smoothScroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,45 +78,60 @@ export default {
     ContactSection
   },
   mounted() {
-    window.scrollTo(0, 0);
+    scrollTo(0, { immediate: true });
 
-    const tl = gsap.timeline();
+    const chars = this.splitChars(this.$refs.name);
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     tl.from(this.$refs.greeting, {
-      duration: 0.8,
-      y: 50,
-      opacity: 0,
-      ease: "power3.out"
+      duration: 0.7,
+      y: 40,
+      opacity: 0
     })
-    .from(this.$refs.name, {
-      duration: 0.8,
-      y: 50,
+    .from(chars, {
+      duration: 0.75,
+      yPercent: 110,
       opacity: 0,
-      ease: "power3.out"
-    }, "-=0.5")
+      rotateX: -75,
+      transformPerspective: 900,
+      transformOrigin: "50% 100%",
+      stagger: 0.045,
+      clearProps: "transform,opacity"
+    }, "-=0.35")
     .from(this.$refs.description, {
       duration: 0.8,
       y: 50,
-      opacity: 0,
-      ease: "power3.out"
-    }, "-=0.6")
+      opacity: 0
+    }, "-=0.5")
     .from(this.$refs.workStatus, {
       duration: 0.8,
       y: 50,
-      opacity: 0,
-      ease: "power3.out"
-    }, "-=0.5")
+      opacity: 0
+    }, "-=0.55")
     .from(this.$refs.network.children, {
-      duration: 0.8,
+      duration: 0.6,
       opacity: 0,
-      ease: "power3.out",
-      stagger: 0.2
+      scale: 0.9,
+      stagger: 0.12,
+      clearProps: "transform,opacity"
     }, "-=0.5")
     .from(this.$refs.scroll, {
       duration: 0.8,
-      opacity: 0,
-      ease: "power3.out"
-    }, "-=0.5");
+      opacity: 0
+    }, "-=0.4");
+
+    // Gentle parallax as the hero scrolls away (no dimming, so it stays readable).
+    gsap.to(this.$refs.hero, {
+      yPercent: -12,
+      ease: "none",
+      scrollTrigger: {
+        trigger: this.$refs.hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
 
     ScrollTrigger.create({
       trigger: this.$refs.name,
@@ -127,32 +145,37 @@ export default {
     });
 
     gsap.utils.toArray('.sections > *').forEach(section => {
+      // Play the reveal once and let it finish, so the section is always
+      // fully readable even if you stop scrolling mid-way.
       gsap.from(section, {
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
-          end: "bottom 60%",
-          toggleActions: "play none none none",
-          scrub: true,
-          onEnter: () => {
-            const id = section.id;
-            emitter.emit('sectionChanged', id);
-          },
-          onLeaveBack: () => {
-            const id = section.id;
-            emitter.emit('sectionChanged', id);
-          },
+          start: "top 88%",
+          once: true
         },
         y: 50,
         opacity: 0,
-        duration: 1,
+        duration: 0.9,
         ease: "power3.out"
+      });
+
+      // Track the active section for the header nav (independent of the reveal).
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 55%",
+        onEnter: () => emitter.emit('sectionChanged', section.id),
+        onEnterBack: () => emitter.emit('sectionChanged', section.id)
       });
     });
 
+    // Free, smooth scrolling — no snapping. Sections animate in on their own.
+    // (Re-add Lenis' snap module here if you ever want section-to-section
+    // snapping again, but it makes stopping mid-section to read frustrating.)
+
+    // Idle scroll indicator fade-out.
     let scrollDivHidden = false;
-  
-    const handleScroll = () => {
+
+    this.handleScroll = () => {
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
       if (scrollTop > 100 && !scrollDivHidden) {
@@ -172,27 +195,30 @@ export default {
       }
     };
 
-    const sections = gsap.utils.toArray(".section");
-
-    ScrollTrigger.create({
-      trigger: ".sections",
-      start: "top top",
-      end: "bottom bottom",
-      snap: {
-        snapTo: (progress) => {
-          let sectionOffsets = sections.map(section => section.offsetTop);
-          let closest = sectionOffsets.reduce((prev, curr) => 
-            Math.abs(curr - progress * document.body.scrollHeight) < Math.abs(prev - progress * document.body.scrollHeight) ? curr : prev
-          );
-          return closest / document.body.scrollHeight;
-        },
-        duration: { min: 0.2, max: 0.7 },
-        delay: 0.1,
-        ease: "power1.inOut"
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  },
+  methods: {
+    // Splits the name into per-character spans for a staggered reveal.
+    splitChars(root) {
+      const target = root.querySelector('.name-text') || root;
+      const text = target.textContent;
+      target.textContent = '';
+      const frag = document.createDocumentFragment();
+      const chars = [];
+      for (const ch of text) {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        frag.appendChild(span);
+        chars.push(span);
       }
-    });
-
-    window.addEventListener('scroll', handleScroll);
+      target.appendChild(frag);
+      return chars;
+    }
   }
 }
 </script>
@@ -202,6 +228,11 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.hero {
+  position: relative;
+  will-change: transform;
 }
 
 .name {
@@ -222,10 +253,29 @@ export default {
   margin: 0;
   font-size: 6em;
   font-weight: 600;
-  background: linear-gradient(to right, var(--color-tertiary), var(--color-paragraph-lighter));
+  background: linear-gradient(
+    100deg,
+    var(--color-tertiary) 0%,
+    var(--color-paragraph-lighter) 42%,
+    #ffffff 50%,
+    var(--color-paragraph-lighter) 58%,
+    var(--color-tertiary) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: nameShimmer 7s ease-in-out infinite;
+}
+
+.name-text .char {
+  display: inline-block;
+}
+
+@keyframes nameShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .description {
